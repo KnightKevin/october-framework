@@ -1,4 +1,4 @@
-package com.simon.http;
+package com.simon.server;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;

@@ -1,4 +1,4 @@
-package com.simon.http;
+package com.simon.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
