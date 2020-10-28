@@ -1,4 +1,4 @@
-package com.simon.server;
+package com.simon.october.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;

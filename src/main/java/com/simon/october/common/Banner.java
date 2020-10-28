@@ -1,4 +1,4 @@
-package com.simon.common;
+package com.simon.october.common;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

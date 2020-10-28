@@ -1,4 +1,4 @@
-package com.simon.server;
+package com.simon.october.server;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
@@ -9,8 +9,8 @@ import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- *  对于http request的处理
- * */
+ * 对于http request的处理
+ */
 @Slf4j
 public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
@@ -24,7 +24,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
 
         String uri = fullHttpRequest.uri();
 
-        String msg ="<div>uri is "+uri+" </div>";
+        String msg = "<div>uri is " + uri + " </div>";
 
         FullHttpResponse response = new DefaultFullHttpResponse(
                 HttpVersion.HTTP_1_1,
