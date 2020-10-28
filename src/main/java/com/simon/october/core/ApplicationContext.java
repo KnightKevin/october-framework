@@ -2,6 +2,8 @@ package com.simon.october.core;
 
 import com.simon.october.annotation.ComponentScan;
 import com.simon.october.common.Banner;
+import com.simon.october.core.mvc.factory.RouteMethodMapper;
+import com.simon.october.factory.ClassFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
@@ -19,8 +21,10 @@ public final class ApplicationContext {
         String[] pagesNames = getPackageNames(clazz);
 
         // load classes with custom annotation
+        ClassFactory.loadClass(pagesNames);
 
         // Load routes
+        RouteMethodMapper.loadRoutes();
 
         // Load beans managed by the ioc container
 
