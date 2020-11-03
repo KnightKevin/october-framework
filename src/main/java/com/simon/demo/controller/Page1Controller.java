@@ -4,8 +4,8 @@ import com.simon.october.annotation.RestController;
 import com.simon.october.annotation.mvc.GetMapping;
 import com.simon.october.annotation.mvc.PostMapping;
 
-@RestController("/page")
-public class PageController {
+@RestController("/page1")
+public class Page1Controller {
 
     @GetMapping("/user")
     public String page1() {
@@ -13,8 +13,8 @@ public class PageController {
     }
 
     @GetMapping("/user1")
-    public String page2(String id) {
-        return id;
+    public String page2() {
+        return "index";
     }
 
     @GetMapping("/user2")
@@ -22,12 +22,12 @@ public class PageController {
         return "index";
     }
 
-    @PostMapping("/post/user3")
+    @PostMapping("/user3")
     public String page4() {
         return "index";
     }
 
-    @PostMapping("/post/user4")
+    @PostMapping("/user4")
     public String page5() {
         return "index";
     }

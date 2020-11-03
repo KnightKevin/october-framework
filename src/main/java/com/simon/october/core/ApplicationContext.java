@@ -2,6 +2,7 @@ package com.simon.october.core;
 
 import com.simon.october.annotation.ComponentScan;
 import com.simon.october.common.Banner;
+import com.simon.october.core.ioc.BeanFactory;
 import com.simon.october.core.mvc.factory.RouteMethodMapper;
 import com.simon.october.factory.ClassFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ public final class ApplicationContext {
         RouteMethodMapper.loadRoutes();
 
         // Load beans managed by the ioc container
+        BeanFactory.loadBeans();
 
         // Load configuration
 
