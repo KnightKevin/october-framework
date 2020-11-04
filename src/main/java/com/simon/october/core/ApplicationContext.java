@@ -7,6 +7,7 @@ import com.simon.october.core.mvc.factory.RouteMethodMapper;
 import com.simon.october.factory.ClassFactory;
 import lombok.extern.slf4j.Slf4j;
 
+import java.net.URL;
 import java.util.Objects;
 
 /**
@@ -31,6 +32,7 @@ public final class ApplicationContext {
         BeanFactory.loadBeans();
 
         // Load configuration
+        loadConfig(clazz);
 
         // Load interceptors
 
@@ -44,6 +46,11 @@ public final class ApplicationContext {
 
         // 如果没设置包名就去其默认的包名
         return !Objects.isNull(componentScan) ? componentScan.value() : new String[]{clazz.getPackage().getName()};
+    }
+
+    private void loadConfig(Class<?> applicationClass) {
+        URL url = applicationClass.getClassLoader().getResource("");
+        // todo simon: 加载配置文件
     }
 
 }
