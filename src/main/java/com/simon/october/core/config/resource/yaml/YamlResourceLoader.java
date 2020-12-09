@@ -13,6 +13,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class YamlResourceLoader implements ResourceLoader {
+
+    /**
+     * 将yml文件的内容，如下:
+     * aaa:
+     * bbb:
+     * ccc: 123
+     * 转成map:
+     * aaa.bbb.ccc->123
+     */
     @Override
     public Map<String, String> loadResource(Path path) throws IOException {
         Map<String, String> result = new HashMap<>();
@@ -23,7 +32,7 @@ public class YamlResourceLoader implements ResourceLoader {
             inputStream = Files.newInputStream(path);
             reader = new InputStreamReader(inputStream);
             Map<String, Object> map = asMap(yaml.load(reader));
-            formatMap(result, map);
+            formatMap(result, map, null);
         } finally {
             if (null != inputStream) {
                 inputStream.close();
@@ -40,13 +49,17 @@ public class YamlResourceLoader implements ResourceLoader {
     /**
      * 格式化map，变成Map<String, String>格式
      */
-    private void formatMap(Map<String, String> result, Map<String, Object> source) {
+    private void formatMap(Map<String, String> result, Map<String, Object> source, String lastKey) {
         source.forEach((k, v) -> {
+            if (null != lastKey && !lastKey.isEmpty()) {
+                k = lastKey + "." + k;
+            }
+
             if (v instanceof String) {
                 result.put(k, (String) v);
             } else if (v instanceof Map) {
                 Map<String, Object> map = (Map<String, Object>) v;
-                formatMap(result, map);
+                formatMap(result, map, k);
             } else {
                 result.put(k, null == v ? "" : String.valueOf(v));
             }

@@ -63,9 +63,6 @@ public final class ApplicationContext {
         URL url = applicationClass.getClassLoader().getResource("");
         List<Path> filePaths = new ArrayList<>();
         try {
-            log.info("url is {}", url.toURI());
-
-
             Path path = Paths.get(url.toURI());
 
             Stream<Path> pathStream = Files.list(path);

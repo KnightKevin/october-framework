@@ -3,7 +3,6 @@
 ### 待做事项
 
 - [x] 了解@ComponentScan的作用
-
 - [x] 实现@ComponentScan
 - [x] @Component
 - [x] @RequestController
@@ -21,3 +20,5 @@
 - [ ] 理解ConfigurationManager的实现，目前很不理解为什么这样做
 - [ ] 实现BeanFactory的getBean方法
 - [ ] 准确来说加载配置文件的方法就有一大半没弄懂，估计是因为平日所用的范围过少吧
+- [ ] Class.isAssignableFrom()
+- [ ] Class.
