@@ -20,3 +20,4 @@
 - [x] java.nio.Files
 - [ ] 理解ConfigurationManager的实现，目前很不理解为什么这样做
 - [ ] 实现BeanFactory的getBean方法
+- [ ] 准确来说加载配置文件的方法就有一大半没弄懂，估计是因为平日所用的范围过少吧
