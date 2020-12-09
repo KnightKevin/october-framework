@@ -2,6 +2,7 @@ package com.simon.october.core;
 
 import com.simon.october.annotation.ComponentScan;
 import com.simon.october.common.Banner;
+import com.simon.october.core.aop.factory.InterceptorFactory;
 import com.simon.october.core.config.Configuration;
 import com.simon.october.core.config.ConfigurationManager;
 import com.simon.october.core.ioc.BeanFactory;
@@ -46,6 +47,7 @@ public final class ApplicationContext {
         loadConfig(clazz);
 
         // Load interceptors
+        InterceptorFactory.loadInterceptors(pagesNames);
 
         // Traverse all the beans in the ioc container and inject instances for all @Autowired annotated attributes
 
