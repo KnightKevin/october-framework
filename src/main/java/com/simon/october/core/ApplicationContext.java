@@ -2,13 +2,24 @@ package com.simon.october.core;
 
 import com.simon.october.annotation.ComponentScan;
 import com.simon.october.common.Banner;
+import com.simon.october.core.config.Configuration;
+import com.simon.october.core.config.ConfigurationManager;
 import com.simon.october.core.ioc.BeanFactory;
 import com.simon.october.core.mvc.factory.RouteMethodMapper;
 import com.simon.october.factory.ClassFactory;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * framework start
@@ -50,7 +61,29 @@ public final class ApplicationContext {
 
     private void loadConfig(Class<?> applicationClass) {
         URL url = applicationClass.getClassLoader().getResource("");
-        // todo simon: 加载配置文件
+        List<Path> filePaths = new ArrayList<>();
+        try {
+            log.info("url is {}", url.toURI());
+
+
+            Path path = Paths.get(url.toURI());
+
+            Stream<Path> pathStream = Files.list(path);
+            Iterator<Path> pathIterator = pathStream.iterator();
+
+            while (pathIterator.hasNext()) {
+                Path p = pathIterator.next();
+                if (p.getFileName().toString().startsWith(Configuration.APPLICATION_NAME)) {
+                    filePaths.add(p);
+                }
+            }
+
+
+        } catch (URISyntaxException | IOException e) {
+            log.error(e.getMessage());
+        }
+        ConfigurationManager configurationManager = BeanFactory.getBean(ConfigurationManager.class);
+        configurationManager.loadResources(filePaths);
     }
 
 }

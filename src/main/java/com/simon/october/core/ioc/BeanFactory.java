@@ -42,4 +42,20 @@ public class BeanFactory {
             log.info("create object fail!");
         }
     }
+
+    public static <T> T getBean(Class<T> type) {
+        // todo bean
+        String[] beanNames = getBeanNamesForType(type);
+        return null;
+    }
+
+    public static <T> Map<String, T> getBeansOfType(Class<T> type) {
+        // todo 找出某个类的bean
+        return null;
+    }
+
+    private static String[] getBeanNamesForType(Class<?> type) {
+        // todo 找出某个类的名称
+        return null;
+    }
 }

@@ -14,7 +14,9 @@
 - [x] 将被相关注解修饰的类加载到ioc容器中
 - [ ] 加载配置文件，我想现阶段只支持yml文件
 - [ ] 添加自定义异常
-- [ ] 了解ClassLoader的getResource方法
-- [ ] java.net.URL
-- [ ] java.nio.file.Paths
-- [ ] java.nio.Files
+- [x] 了解ClassLoader的getResource方法
+- [x] java.net.URL
+- [x] java.nio.file.Paths
+- [x] java.nio.Files
+- [ ] 理解ConfigurationManager的实现，目前很不理解为什么这样做
+- [ ] 实现BeanFactory的getBean方法
