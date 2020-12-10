@@ -20,7 +20,7 @@ public class BeanFactory {
     /**
      * ioc 容器
      */
-    private static final Map<String, Object> BEANS = new ConcurrentHashMap<>(64);
+    public static final Map<String, Object> BEANS = new ConcurrentHashMap<>(64);
 
     private static final Map<String, String[]> SINGLE_BEAN_NAMES_TYPE_MAP = new ConcurrentHashMap<>(64);
 

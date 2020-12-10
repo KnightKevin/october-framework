@@ -6,6 +6,7 @@ import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.util.Set;
 
 @Slf4j
@@ -29,5 +30,9 @@ public class ReflectionUtil {
         Set<Class<? extends T>> classes = reflections.getSubTypesOf(clazz);
         log.info("the number of sub class of {} is {}", clazz.getSimpleName(), classes.size());
         return classes;
+    }
+
+    public static void setField(Object o, Field field, Object fieldInstance) {
+
     }
 }

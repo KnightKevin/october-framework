@@ -6,6 +6,7 @@ import com.simon.october.core.aop.factory.InterceptorFactory;
 import com.simon.october.core.config.Configuration;
 import com.simon.october.core.config.ConfigurationManager;
 import com.simon.october.core.ioc.BeanFactory;
+import com.simon.october.core.ioc.DependencyInjection;
 import com.simon.october.core.mvc.factory.RouteMethodMapper;
 import com.simon.october.factory.ClassFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -50,6 +51,7 @@ public final class ApplicationContext {
         InterceptorFactory.loadInterceptors(pagesNames);
 
         // Traverse all the beans in the ioc container and inject instances for all @Autowired annotated attributes
+        DependencyInjection.inject(pagesNames);
 
         // Perform some callback events
     }
