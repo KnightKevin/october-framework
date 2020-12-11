@@ -29,9 +29,12 @@ public class AutowiredBeanInitialization {
                 // 拿到该字段的的对象实例
                 Object filedInstance = getBeanByAutowiredField(field);
 
+                // todo 解决循环依赖的问题
+
                 // todo aop 实现
 
                 // 将该对象实例设置到bean当中
+                ReflectionUtil.setField(o, field, filedInstance);
             }
 
             if (field.isAnnotationPresent(Value.class)) {
@@ -41,7 +44,7 @@ public class AutowiredBeanInitialization {
     }
 
     private Object getBeanByAutowiredField(Field field) {
-        Class<?> clazz = field.getClass();
+        Class<?> clazz = field.getType();
         // 获取该类所需要的bean name;
         String beanName = BeanHelper.getBeanName(clazz);
 

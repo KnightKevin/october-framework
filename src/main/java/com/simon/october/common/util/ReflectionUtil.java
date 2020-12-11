@@ -33,6 +33,11 @@ public class ReflectionUtil {
     }
 
     public static void setField(Object o, Field field, Object fieldInstance) {
-
+        field.setAccessible(true);
+        try {
+            field.set(o, fieldInstance);
+        } catch (IllegalAccessException e) {
+            throw new AssertionError(e);
+        }
     }
 }
