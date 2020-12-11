@@ -2,6 +2,8 @@ package com.simon.october.core.ioc;
 
 import com.simon.october.annotation.Component;
 import com.simon.october.annotation.RestController;
+import com.simon.october.core.aop.factory.AopProxyBeanPostProcessor;
+import com.simon.october.core.aop.intercept.BeanPostProcessor;
 import com.simon.october.core.config.ConfigurationFactory;
 import com.simon.october.core.config.ConfigurationManager;
 import com.simon.october.exception.DoGetBeanException;
@@ -70,6 +72,13 @@ public class BeanFactory {
     public static <T> Map<String, T> getBeansOfType(Class<T> type) {
         // todo 找出某个类的bean
         return null;
+    }
+
+    public static void applyBeanPostProcessor() {
+        BEANS.replaceAll((k, v) -> {
+            BeanPostProcessor beanPostProcessor = AopProxyBeanPostProcessor.get(v.getClass());
+            return beanPostProcessor.postProcessAfterInitialization(v);
+        });
     }
 
     // think 当然没看懂了

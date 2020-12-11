@@ -7,6 +7,6 @@ public abstract class Interceptor {
         return false;
     }
 
-    public abstract Object intercept();
+    public abstract Object intercept(MethodInvocation methodInvocation);
 
 }

@@ -53,6 +53,10 @@ public final class ApplicationContext {
         // Traverse all the beans in the ioc container and inject instances for all @Autowired annotated attributes
         DependencyInjection.inject(pagesNames);
 
+        // Applies bean post processors on the classes which are from ClassFactory.
+        // For example, the class annotated by @Component or @RestController.
+        BeanFactory.applyBeanPostProcessor();
+
         // Perform some callback events
     }
 

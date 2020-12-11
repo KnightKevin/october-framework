@@ -17,7 +17,7 @@
 - [x] java.net.URL
 - [x] java.nio.file.Paths
 - [x] java.nio.Files
-- [ ] 理解ConfigurationManager的实现，目前很不理解为什么这样做
+- [ ] 理解ConfigurationManager的实现，目前很不理解为什么这样做，最好画出类图
 - [x] 实现BeanFactory的getBean方法
 - [ ] 准确来说加载配置文件的方法就有一大半没弄懂，估计是因为平日所用的范围过少吧
 - [ ] Class.isAssignableFrom()
@@ -28,4 +28,8 @@
 - [ ] @Autowired功能实现，有点难
 - [ ] @Autowired解决循环依赖的问题
 - [ ] @Autowired添加AOP
+- [ ] 了解post processor(貌似叫做后置处理器)
+- [ ] MethodInvocation
+- [ ] 了解拦截器Interceptor
+- [ ] 要复习一下代理模式了，而且还用到了jdk自带的InvocationHandler类实现的
 
