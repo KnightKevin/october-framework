@@ -32,4 +32,5 @@
 - [ ] MethodInvocation
 - [ ] 了解拦截器Interceptor
 - [ ] 要复习一下代理模式了，而且还用到了jdk自带的InvocationHandler类实现的
+- [ ] clig动态代理
 

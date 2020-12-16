@@ -10,10 +10,7 @@ import com.simon.october.exception.DoGetBeanException;
 import com.simon.october.factory.ClassFactory;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
@@ -69,9 +66,19 @@ public class BeanFactory {
         return type.cast(o);
     }
 
+    // think 值得多看看
     public static <T> Map<String, T> getBeansOfType(Class<T> type) {
-        // todo 找出某个类的bean
-        return null;
+        Map<String, T> result = new HashMap<>();
+        String[] beanNames = getBeanNamesForType(type);
+        for (String name : beanNames) {
+            Object beanInstance = BEANS.get(name);
+            if (!type.isInstance(beanInstance)) {
+                throw new DoGetBeanException("not found bean implement, the bean is : " + type.getName());
+            }
+            result.put(name, type.cast(beanInstance));
+        }
+
+        return result;
     }
 
     public static void applyBeanPostProcessor() {

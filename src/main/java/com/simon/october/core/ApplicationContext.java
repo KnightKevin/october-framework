@@ -3,12 +3,14 @@ package com.simon.october.core;
 import com.simon.october.annotation.ComponentScan;
 import com.simon.october.common.Banner;
 import com.simon.october.core.aop.factory.InterceptorFactory;
+import com.simon.october.core.boot.ApplicationRunner;
 import com.simon.october.core.config.Configuration;
 import com.simon.october.core.config.ConfigurationManager;
 import com.simon.october.core.ioc.BeanFactory;
 import com.simon.october.core.ioc.DependencyInjection;
 import com.simon.october.core.mvc.factory.RouteMethodMapper;
 import com.simon.october.factory.ClassFactory;
+import com.simon.october.server.HttpServer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -17,10 +19,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
@@ -58,6 +57,7 @@ public final class ApplicationContext {
         BeanFactory.applyBeanPostProcessor();
 
         // Perform some callback events
+        callRunners();
     }
 
     private static String[] getPackageNames(Class<?> clazz) {
@@ -89,6 +89,20 @@ public final class ApplicationContext {
         }
         ConfigurationManager configurationManager = BeanFactory.getBean(ConfigurationManager.class);
         configurationManager.loadResources(filePaths);
+    }
+
+    private void callRunners() {
+        List<ApplicationRunner> runners = new ArrayList<>(BeanFactory.getBeansOfType(ApplicationRunner.class).values());
+
+        // the last step is to start web application
+        runners.add(() -> {
+            HttpServer httpServer = new HttpServer();
+            httpServer.start();
+        });
+
+        for (Object runner : new LinkedHashSet<>(runners)) {
+            ((ApplicationRunner) runner).run();
+        }
     }
 
 }

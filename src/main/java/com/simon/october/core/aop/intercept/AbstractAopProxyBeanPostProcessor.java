@@ -12,7 +12,7 @@ public abstract class AbstractAopProxyBeanPostProcessor implements BeanPostProce
                 wrapperProxyBean = wrapBean(bean, interceptor);
             }
         }
-        return null;
+        return wrapperProxyBean;
     }
 
     public abstract Object wrapBean(Object target, Interceptor interceptor);
