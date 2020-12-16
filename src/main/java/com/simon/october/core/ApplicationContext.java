@@ -100,6 +100,7 @@ public final class ApplicationContext {
             httpServer.start();
         });
 
+        // think 真看不懂
         for (Object runner : new LinkedHashSet<>(runners)) {
             ((ApplicationRunner) runner).run();
         }

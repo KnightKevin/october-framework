@@ -31,6 +31,7 @@
 - [ ] 了解post processor(貌似叫做后置处理器)
 - [ ] MethodInvocation
 - [ ] 了解拦截器Interceptor
+- [ ] Proxy.newProxyInstance()
 - [ ] 要复习一下代理模式了，而且还用到了jdk自带的InvocationHandler类实现的
 - [ ] clig动态代理
 
