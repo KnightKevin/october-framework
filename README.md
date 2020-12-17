@@ -34,4 +34,7 @@
 - [ ] Proxy.newProxyInstance()
 - [ ] 要复习一下代理模式了，而且还用到了jdk自带的InvocationHandler类实现的
 - [ ] clig动态代理
+- [ ] 用到了netty框架的一个QueryStringDecoder工具类，可以处理uri的，虽然名字是QueryStringDecoder
+- [ ] 添加了编解码框架：commons-codec
+- [ ] 重构loadRoute
 

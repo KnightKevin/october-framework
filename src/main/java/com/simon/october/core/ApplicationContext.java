@@ -46,12 +46,13 @@ public final class ApplicationContext {
         // Load configuration
         loadConfig(clazz);
 
-        // Load interceptors
+        // think Load interceptors
         InterceptorFactory.loadInterceptors(pagesNames);
 
         // Traverse all the beans in the ioc container and inject instances for all @Autowired annotated attributes
         DependencyInjection.inject(pagesNames);
 
+        // think BeanPostProcessor
         // Applies bean post processors on the classes which are from ClassFactory.
         // For example, the class annotated by @Component or @RestController.
         BeanFactory.applyBeanPostProcessor();
