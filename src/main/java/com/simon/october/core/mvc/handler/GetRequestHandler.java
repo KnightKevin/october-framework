@@ -3,6 +3,7 @@ package com.simon.october.core.mvc.handler;
 import com.simon.october.core.ioc.BeanFactory;
 import com.simon.october.core.ioc.BeanHelper;
 import com.simon.october.core.mvc.entity.MethodDetail;
+import com.simon.october.core.mvc.factory.FullHttpResponseFactory;
 import com.simon.october.core.mvc.factory.RouteMethodMapper;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
@@ -14,7 +15,9 @@ import org.apache.commons.codec.Charsets;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -39,10 +42,15 @@ public class GetRequestHandler implements RequestHandler {
         }
 
         Parameter[] targetMethodParameters = targetMethod.getParameters();
+        // todo 将method的参数变成List，因为下面调用方法须要用到
+        List<Object> targetMethodParams = new ArrayList<>();
+        for (Parameter parameter : targetMethodParameters) {
+
+        }
 
         String beanName = BeanHelper.getBeanName(methodDetail.getMethod().getDeclaringClass());
         Object targetObject = BeanFactory.BEANS.get(beanName);
-        return null;
+        return FullHttpResponseFactory.getSuccessResponse(targetMethod, targetMethodParams, targetObject);
     }
 
     private Map<String, String> getQueryParams(String uri) {
