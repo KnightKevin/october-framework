@@ -37,4 +37,7 @@
 - [ ] 用到了netty框架的一个QueryStringDecoder工具类，可以处理uri的，虽然名字是QueryStringDecoder
 - [ ] 添加了编解码框架：commons-codec
 - [ ] 重构loadRoute
+- [ ] 添加bean验证框架，javax.validation:validation-api
+- [ ] 添加json解析库com.fasterxml.jackson.core:jackson-databind
+- [ ] 须要controller处理玩后的返回对象转成byte[]数组，他们用了serialize表述
 

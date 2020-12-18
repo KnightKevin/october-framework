@@ -1,12 +1,19 @@
 package com.simon.october.core.mvc.handler;
 
+import com.simon.october.core.ioc.BeanFactory;
+import com.simon.october.core.ioc.BeanHelper;
+import com.simon.october.core.mvc.entity.MethodDetail;
+import com.simon.october.core.mvc.factory.RouteMethodMapper;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
+import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.QueryStringDecoder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.codec.Charsets;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,10 +31,17 @@ public class GetRequestHandler implements RequestHandler {
 
         log.info("the request uri is " + uri);
 
-        // 获取并解析出path和参数
+        MethodDetail methodDetail = RouteMethodMapper.getMethodDetail(requestPath, HttpMethod.GET);
+        methodDetail.setQueryParameterMap(param);
+        Method targetMethod = methodDetail.getMethod();
+        if (null == targetMethod) {
+            return null;
+        }
 
-        // 获取这个路由的目标方法
+        Parameter[] targetMethodParameters = targetMethod.getParameters();
 
+        String beanName = BeanHelper.getBeanName(methodDetail.getMethod().getDeclaringClass());
+        Object targetObject = BeanFactory.BEANS.get(beanName);
         return null;
     }
 
