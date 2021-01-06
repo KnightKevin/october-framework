@@ -4,7 +4,9 @@ import com.simon.october.core.ioc.BeanFactory;
 import com.simon.october.core.ioc.BeanHelper;
 import com.simon.october.core.mvc.entity.MethodDetail;
 import com.simon.october.core.mvc.factory.FullHttpResponseFactory;
+import com.simon.october.core.mvc.factory.ParameterResolverFactory;
 import com.simon.october.core.mvc.factory.RouteMethodMapper;
+import com.simon.october.core.mvc.resolver.ParameterResolver;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpMethod;
@@ -42,10 +44,10 @@ public class GetRequestHandler implements RequestHandler {
         }
 
         Parameter[] targetMethodParameters = targetMethod.getParameters();
-        // todo 将method的参数变成List，因为下面调用方法须要用到
         List<Object> targetMethodParams = new ArrayList<>();
         for (Parameter parameter : targetMethodParameters) {
-
+            ParameterResolver parameterResolver = ParameterResolverFactory.get(parameter);
+            targetMethodParams.add(parameterResolver.resolve(methodDetail, parameter));
         }
 
         String beanName = BeanHelper.getBeanName(methodDetail.getMethod().getDeclaringClass());

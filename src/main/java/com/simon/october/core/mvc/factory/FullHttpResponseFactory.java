@@ -23,7 +23,7 @@ public class FullHttpResponseFactory {
             ReflectionUtil.executeTargetMethodNoResult(targetObject, targetMethod, targetMethodParams);
             return buildSuccessResponse();
         } else {
-            Object result = ReflectionUtil.executeTargetMethod(targetObject, targetMethod, targetMethodParams);
+            Object result = ReflectionUtil.executeTargetMethod(targetObject, targetMethod, targetMethodParams.toArray());
             return buildSuccessResponse(result);
         }
     }

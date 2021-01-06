@@ -5,6 +5,10 @@ import com.simon.october.annotation.Autowired;
 import com.simon.october.annotation.RestController;
 import com.simon.october.annotation.mvc.GetMapping;
 import com.simon.october.annotation.mvc.PostMapping;
+import com.simon.october.annotation.mvc.RequestParam;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController("/page1")
 public class Page1Controller {
@@ -13,8 +17,12 @@ public class Page1Controller {
     private Component1 component1;
 
     @GetMapping("/user")
-    public String page1() {
-        return "index";
+    public Map<String, Object> page1(@RequestParam(value = "name") String name, @RequestParam("age") int age) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
+        map.put("age", age);
+        component1.display();
+        return map;
     }
 
     @GetMapping("/user1")
