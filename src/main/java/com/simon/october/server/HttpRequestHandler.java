@@ -36,4 +36,12 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
 
         ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
     }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
+        ctx.close();
+    }
+
+
 }

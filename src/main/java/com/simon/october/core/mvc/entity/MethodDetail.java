@@ -18,6 +18,11 @@ public class MethodDetail {
     private Map<String, String> queryParameterMap;
 
     /**
+     * json type http post request data
+     */
+    private String json;
+
+    /**
      *
      */
     public void build(String requestPath, Map<String, Method> methodMap) {
