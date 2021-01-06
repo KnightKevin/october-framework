@@ -40,4 +40,5 @@
 - [ ] 添加bean验证框架，javax.validation:validation-api
 - [ ] 添加json解析库com.fasterxml.jackson.core:jackson-databind
 - [ ] 须要controller处理完后的返回对象转成byte[]数组，他们用了serialize表述
+- [ ] DateUtil中使用的类包事java.time.*
 

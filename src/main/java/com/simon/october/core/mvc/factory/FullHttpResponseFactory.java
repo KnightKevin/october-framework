@@ -1,6 +1,7 @@
 package com.simon.october.core.mvc.factory;
 
 import com.simon.october.common.util.ReflectionUtil;
+import com.simon.october.exception.ErrorResponse;
 import com.simon.october.serialize.impl.JacksonSerializer;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
@@ -26,6 +27,15 @@ public class FullHttpResponseFactory {
             Object result = ReflectionUtil.executeTargetMethod(targetObject, targetMethod, targetMethodParams.toArray());
             return buildSuccessResponse(result);
         }
+    }
+
+    public static FullHttpResponse getErrorResponse(String url, String message, HttpResponseStatus httpResponseStatus) {
+        ErrorResponse errorResponse = new ErrorResponse(httpResponseStatus.code(), httpResponseStatus.reasonPhrase(), message, url);
+        byte[] content = JACKSON_SERIALIZER.serialize(errorResponse);
+        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, httpResponseStatus, Unpooled.wrappedBuffer(content));
+        response.headers().set(CONTENT_TYPE, "application/json");
+        response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
+        return response;
     }
 
     private static FullHttpResponse buildSuccessResponse(Object o) {

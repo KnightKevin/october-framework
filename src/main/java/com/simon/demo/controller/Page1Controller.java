@@ -17,7 +17,7 @@ public class Page1Controller {
     private Component1 component1;
 
     @GetMapping("/user")
-    public Map<String, Object> page1(@RequestParam(value = "name") String name, @RequestParam("age") int age) {
+    public Map<String, Object> page1(@RequestParam(value = "name") String name, @RequestParam(value = "age", require = true) int age) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
         map.put("age", age);
